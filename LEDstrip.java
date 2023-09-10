@@ -9,4 +9,3 @@ import com.diozero.ws281xj.rpiws281x.WS281x;
             LedDriverInterface strip = new WS281x(pin,bright,pixel_num);
         }
     }
-}
