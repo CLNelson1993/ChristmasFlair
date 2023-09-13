@@ -4,7 +4,7 @@
    C:\\...\ChristmasFlair\libs\
 3. In diozero-distribution-1.3.5, move all .jar files into the new libs directory.
 4. In your IntelliJ project, the .jar files should be showing in libs now.
-5. Right click on libs, click "Add as library..."
+5. Still in IntelliJ: Right click on libs, click "Add as library..."
 6. -Name = libs
 
    -Level = Project Library
