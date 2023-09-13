@@ -10,7 +10,6 @@
 //numPixels - The number of pixels connected.
 //stripType - Strip type
 //This many parameters may be unnecessary. Hopefully we find out!
-
 import com.diozero.ws281xj.LedDriverInterface;
 import com.diozero.ws281xj.PixelAnimations;
 import com.diozero.ws281xj.PixelColour;

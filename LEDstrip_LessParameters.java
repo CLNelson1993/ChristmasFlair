@@ -1,8 +1,3 @@
-import com.diozero.ws281xj.LedDriverInterface;
-import com.diozero.ws281xj.PixelAnimations;
-import com.diozero.ws281xj.PixelColour;
-import com.diozero.ws281xj.rpiws281x.WS281x;
-
 //This is one of two files I will be making to better understand how the LED talks to the Pi.
 //We are trying the following in this file:
 //
@@ -14,6 +9,10 @@ import com.diozero.ws281xj.rpiws281x.WS281x;
 //This version of the file uses minimum possible parameters.
 //This means every parameter we haven't set will use their defaults.
 //Minimum params may be bad for us because this library was only tested on WS2812 by the author.
+import com.diozero.ws281xj.LedDriverInterface;
+import com.diozero.ws281xj.PixelAnimations;
+import com.diozero.ws281xj.PixelColour;
+import com.diozero.ws281xj.rpiws281x.WS281x;
 public class LEDstrip_LessParameters {
     public static void main(String[] args){
         int pin = 18;
