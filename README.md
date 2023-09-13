@@ -1,7 +1,7 @@
 # Adding diozero to IntelliJ project + *info on diozero's sample app
 1. Download the distribution file here: [https://search.maven.org/remotecontent?filepath=com/diozero/diozero-distribution/1.3.5/diozero-distribution-1.3.5-bin.zip]. Extract the directory named diozero-distribution-1.3.5 to a temporary place.
 2. Create a new directory in ChristmasFlair named libs. It should look something like this:
-   C:\...\ChristmasFlair\libs\
+   C:\\...\ChristmasFlair\libs\
 3. In diozero-distribution-1.3.5, move all .jar files into the new libs directory.
 4. In your IntelliJ project, the .jar files should be showing in libs now.
 5. Right click on libs, click "Add as library..."
