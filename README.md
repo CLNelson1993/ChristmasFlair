@@ -5,13 +5,15 @@
 3. In diozero-distribution-1.3.5, move all .jar files into the new libs directory.
 4. In your IntelliJ project, the .jar files should be showing in libs now.
 5. Still in IntelliJ: Right click on libs, click "Add as library..."
-6. -Name = libs
+6. A popup should appear with 3 options. They should look like this:
+  
+   -Name = libs
 
    -Level = Project Library
 
     -Add to module: ChristmasFlair
-8. diozero should now be integrated into your IntelliJ project.
-9. To test it:
+9. diozero should now be integrated into your IntelliJ project.
+10. To test it:
 
    -I've put together a class named LEDstrip_LessParameters.java (not sure if it functions yet but it will help here)
 
