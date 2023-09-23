@@ -5,7 +5,6 @@ updated 9/23/2023
 This is where my mermaid.live class diagram currently stands. The goal of this diagram is to make a set of animations that the user can choose by utilizing the decorator design pattern. Current animation ideas include strobe, scroll, and rainbow.
 
 
-
 classDiagram
 
 LedStatic ..|> Led : implements
@@ -80,3 +79,5 @@ Object newState
 +delay()
 
 }
+
+![image](https://github.com/CLNelson1993/ChristmasFlair/assets/143137154/a481f800-cb94-4b3b-a53f-08ff60230d21)
