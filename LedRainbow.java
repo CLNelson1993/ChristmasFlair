@@ -18,8 +18,6 @@ public class LedRainbow {
         }
     }
     private static void ledRainbow(LedDriverInterface led) {
-        System.out.println("rainbowColours()");
-
         int[] colours = PixelColour.RAINBOW;
 
         for (int i = 0; i < 254; i++) {
