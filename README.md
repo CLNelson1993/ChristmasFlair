@@ -1,27 +1,82 @@
 # ChristmasFlair
-# (sort of) based off the following Mermaid diagram:
+
+updated 9/23/2023
+
+This is where my mermaid.live class diagram currently stands. The goal of this diagram is to make a set of animations that the user can choose by utilizing the decorator design pattern. Current animation ideas include strobe, scroll, and rainbow.
+
 
 
 classDiagram
 
-class LEDstrip{
+LedStatic ..|> Led : implements
 
-+int pin_number
+LedAnim ..|> Led : implements
 
-+int brightness
+LedScroll --|> LedAnim : extends
 
-+int pixel_number
+LedStrobe --|> LedAnim : extends
+
+LedRainbow --|> LedAnim : extends
+
+LedAnim *-- Led : extends
+
+class Led{
+
+<<interface>>
+
++render()
 
 }
 
-class LEDanims{
+class LedStatic{
 
-static();
++LedStatic()
 
-flash();
++render()
 
-rainbow();
++delay()
+}
+
+class LedAnim{
+
+led wrappedLed
+
++ledAnim(Led)
+
++render()
+
++delay()
 
 }
 
-LEDstrip -- LEDanims
+class LedScroll{
+
++ledScroll(Led)
+
++render()
+
++delay()
+
+}
+
+class LedStrobe{
+
++ledStrobe(Led)
+
++render()
+
++delay()
+
+}
+
+class LedRainbow{
+
+Object newState
+
++ledRainbow(Led)
+
++render()
+
++delay()
+
+}
