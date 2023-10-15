@@ -8,7 +8,7 @@ import com.diozero.ws281xj.rpiws281x.WS281x;
 public class LedWs281xReceiver implements LedReceiver {
     @Override
     public void rainbowCommand() {
-        System.out.println("Executing rainbowCommand()");
+        System.out.println("rainbowCommand()");
 
         try (LedDriverInterface led_driver = new WS281x(18, 64, 100)) {
             rainbow(led_driver);
