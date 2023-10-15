@@ -1,0 +1,131 @@
+# ChristmasFlair
+
+# 10/14/2023
+
+For this sprint, I did two things: 
+
+
+1.) Made an LedAnimations class which contains a rainbow method and a strobe method. 
+
+
+2.) Attempted to work with the Command design pattern to make a way for the user to access different animations. This can be found in the directory titled "Command_Idea".
+
+
+My command design pattern doesn't seem to be properly written yet. I get the following error:
+
+```
+Cannot invoke "Command_Idea.LedReceiver.rainbowCommand()" because "this.led" is null
+```
+I think this is because I am putting the code for the animations in the wrong place. 
+
+Below is the diagram for what I had in mind.
+
+```
+classDiagram
+    RainbowCommand ..|> LedCommand :implements
+    RainbowCommand --> LedReceiver
+    StrobeCommand ..|> LedCommand :implements
+    StrobeCommand --> LedReceiver
+    LedInvoker --> LedCommand
+    LedClient --> LedReceiver
+    LedClient --> RainbowCommand
+    LedClient --> StrobeCommand
+    LedWs281xReceiver ..|> LedReceiver :implements
+    LedSignReceiver ..|> LedReceiver :implements
+
+    class LedCommand{
+        <<interface>>
+        +execute() : void
+    }
+
+    class RainbowCommand{
+        -LedReceiver led
+        +RainbowCommand(LedReceiver ledReceiver)
+        +execute(): void "led.rainbowCommand()"
+    }
+    class StrobeCommand{
+        -LedReceiver receiver
+        +StrobeCommand(LedReceiver receiver)
+        +execute(): void "led.strobeCommand()"
+    }
+
+    class LedReceiver {
+        <<interface>>
+        +rainbowCommand() : void
+        +strobeCommand() : void
+    }
+    class LedWs281xReceiver {
+        +rainbowCommand() : void
+        +strobeCommand() : void
+    }
+    class LedSignReceiver {
+        +rainbowCommand() : void
+        +strobeCommand() : void
+    }
+
+    class LedInvoker {
+        -LedCommand command
+        +LedInvoker(LedCommand c)
+        +execute()
+    }
+
+    class LedClient{
+        LedReceiver ledReceiver
+        RainbowCommand rainbowCommand
+        StrobeCommand strobeCommand
+        LedInvoker ledInvoker
+        +execute()
+    } 
+```
+# 9/23/2023
+
+This is where my mermaid.live class diagram currently stands. The goal of this diagram is to make a set of animations that the user can choose by utilizing the decorator design pattern. Current animation ideas include strobe, scroll, and rainbow.
+
+
+
+```classDiagram
+
+LedStatic ..|> Led : implements
+LedAnim ..|> Led : implements
+LedScroll --|> LedAnim : extends
+LedStrobe --|> LedAnim : extends
+LedRainbow --|> LedAnim : extends
+LedAnim *-- Led : extends
+
+class Led{
+<<interface>>
++render()
+}
+
+class LedStatic{
++LedStatic()
++render()
++delay()
+}
+
+class LedAnim{
+led wrappedLed
++ledAnim(Led)
++render()
++delay()
+}
+
+class LedScroll{
++ledScroll(Led)
++render()
++delay()
+}
+
+class LedStrobe{
++ledStrobe(Led)
++render()
++delay()
+}
+
+class LedRainbow{
+Object newState
++ledRainbow(Led)
++render()
++delay()
+}
+```
