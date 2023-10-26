@@ -7,3 +7,4 @@ public class Receiver {
         System.out.println("cmdRainbow() executed");
     }
 }
+

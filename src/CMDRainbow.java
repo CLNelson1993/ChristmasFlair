@@ -10,3 +10,4 @@ public class CMDRainbow implements Command {
         receiver.cmdRainbow();
     }
 }
+
