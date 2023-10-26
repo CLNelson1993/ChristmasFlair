@@ -1,4 +1,7 @@
 # ChristmasFlair
+# 10/26/2023 
+
+Command pattern has been solved. Client needs to be written in a way that allows for choice. To elaborate: right now the client executes ALL invoked commands one by one. We will need something like "press 1 for rainbow(), 2 for strobe(), etc etc)."
 
 # 10/14/2023
 
