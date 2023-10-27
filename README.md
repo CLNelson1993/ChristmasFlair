@@ -3,6 +3,9 @@
 
 Command pattern has been solved. Client needs to be written in a way that allows for choice. To elaborate: right now the client executes ALL invoked commands one by one. We will need something like "press 1 for rainbow(), 2 for strobe(), etc etc)."
 
+EDIT: While updating the code on a CR system, I accidentally pushed & committed some stuff while under the wrong username. I thought I signed in on my account but I guess I did something wrong. If you see another username in the commit message history, that's why. Just felt it important to clarify that.
+
+
 # 10/14/2023
 
 For this sprint, I did two things: 
