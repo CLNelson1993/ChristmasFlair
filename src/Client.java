@@ -11,9 +11,10 @@ public class Client {
         //create invoker to pass the command
         Invoker rainbowInvoker = new Invoker(cmdRainbow);
 
-        //execute cmdRainbow()
-        //rainbowInvoker.execute();
-
+        //create new command
+        Command cmdStatic = new CMDStatic(receiver);
+        //create invoker to pass the command
+        Invoker staticInvoker = new Invoker(cmdStatic);
 
 
         // Scanner for testing purposes
@@ -23,7 +24,8 @@ public class Client {
         while (true) {
             //prompt
             System.out.println("Enter a number to choose an animation.");
-            System.out.println("1. Rainbow");
+            System.out.println("1. Static (set color and brightness)");
+            System.out.println("2. Rainbow");
             System.out.println("0. Close program");
 
             //scan for integer
@@ -32,6 +34,10 @@ public class Client {
             //choices
             switch (userInput) {
                 case 1:
+                    //execute cmdStatic()
+                    staticInvoker.execute();
+                    break;
+                case 2:
                     //execute cmdRainbow()
                     rainbowInvoker.execute();
                     break;
