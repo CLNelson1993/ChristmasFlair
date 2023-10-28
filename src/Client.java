@@ -32,10 +32,11 @@ public class Client {
             //choices
             switch (userInput) {
                 case 1:
-                    //execute cmdRainbow().
+                    //execute cmdRainbow()
                     rainbowInvoker.execute();
                     break;
                 case 0:
+                    //close program
                     System.out.println("Closing program...");
                     scanner.close();
                     System.exit(0);
