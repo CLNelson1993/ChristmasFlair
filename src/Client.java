@@ -5,6 +5,10 @@ public class Client {
         //create receiver (you only need one of these for all commands)
         Receiver receiver = new Receiver();
 
+        //create new command
+        Command cmdClose = new CMDClose(receiver);
+        //create invoker to pass the command
+        Invoker closeInvoker = new Invoker(cmdClose);
 
         //create new command
         Command cmdRainbow = new CMDRainbow(receiver);
@@ -28,7 +32,7 @@ public class Client {
             System.out.println("2. Rainbow");
             System.out.println("0. Close program");
 
-            //scan for integer
+            //scan for choice (integer)
             int userInput = scanner.nextInt();
 
             //choices
@@ -42,11 +46,12 @@ public class Client {
                     rainbowInvoker.execute();
                     break;
                 case 0:
-                    //close program
-                    System.out.println("Closing program...");
+                    //execute cmdClose()
+                    closeInvoker.execute();
                     scanner.close();
                     System.exit(0);
                 default:
+                    //invalid option
                     System.out.println("That's not an option.");
             }
         }

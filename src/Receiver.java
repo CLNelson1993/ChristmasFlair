@@ -8,6 +8,13 @@ public class Receiver {
     //Initialize LED strip
     LedDriverInterface ledDriver = new WS281x(18, 255, 100);
 
+    //Close method (Turn off strip when users choose to close program)
+    public void cmdClose() {
+        System.out.println("Turning off LED and closing program...");
+        ledDriver.allOff();
+        ledDriver.close();
+    }
+
     //Rainbow method
     public void cmdRainbow() {
         //set strip to default (in case brightness was changed using cmdStatic)
@@ -15,15 +22,19 @@ public class Receiver {
         //create an array of colors using PixelColour
         int[] colors = PixelColour.RAINBOW;
 
-        //animation code
-        for (int i=0; i<250; i++) {
-            for (int pixel=0; pixel<ledDriver.getNumPixels(); pixel++) {
-                ledDriver.setPixelColour(pixel, colors[(i+pixel) % colors.length]);
-            }
+        System.out.println("Rendering cmdRainbow()...");
 
-            System.out.println("Rendering cmdRainbow()...");
-            ledDriver.render();
-            PixelAnimations.delay(50);
+
+        //animation code
+        while(true) {
+            for (int i=0; i<250; i++) {
+                for (int pixel=0; pixel<ledDriver.getNumPixels(); pixel++) {
+                    ledDriver.setPixelColour(pixel, colors[(i+pixel) % colors.length]);
+                }
+
+                ledDriver.render();
+                PixelAnimations.delay(50);
+            }
         }
     }
 
@@ -48,12 +59,13 @@ public class Receiver {
         //change brightness by updating the driver
         ledDriver = new WS281x(18, brightVal, 100);
 
+        System.out.println("Rendering cmdStatic() in RGB(" + rVal + ", " + gVal + ", " + bVal + ") and brightness(" + brightVal + ")...");
+
         //change all pixels to the assigned RGB values
         for (int i = 0; i < ledDriver.getNumPixels(); i++) {
             ledDriver.setPixelColourRGB(i, rVal, gVal, bVal);
         }
 
-        System.out.println("Rendering cmdStatic() in RGB(" + rVal + ", " + gVal + ", " + bVal + ") and brightness(" + brightVal + ")...");
         ledDriver.render();
     }
 
