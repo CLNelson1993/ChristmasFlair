@@ -20,8 +20,19 @@ public class Client {
         //create invoker to pass the command
         Invoker staticInvoker = new Invoker(cmdStatic);
 
+        //create new command
+        Command cmdWipe = new CMDWipe(receiver);
+        //create invoker to pass the command
+        Invoker wipeInvoker = new Invoker(cmdWipe);
 
-        // Scanner for testing purposes
+        //create new command
+        Command cmdRainbowCycle = new CMDRainbowCycle(receiver);
+        //create invoker to pass the command
+        Invoker rainbowCycleInvoker = new Invoker(cmdRainbowCycle);
+
+
+
+        // Scanner for testing purposes. This probably will be useless later. Too bad!
         // Create Scanner object for user input
         Scanner scanner = new Scanner(System.in);
 
@@ -30,6 +41,8 @@ public class Client {
             System.out.println("Enter a number to choose an animation.");
             System.out.println("1. Static (set color and brightness)");
             System.out.println("2. Rainbow");
+            System.out.println("3. Color Wipe");
+            System.out.println("4. Rainbow Cycle");
             System.out.println("0. Close program");
 
             //scan for choice (integer)
@@ -44,6 +57,12 @@ public class Client {
                 case 2:
                     //execute cmdRainbow()
                     rainbowInvoker.execute();
+                    break;
+                case 3:
+                    wipeInvoker.execute();
+                    break;
+                case 4:
+                    rainbowCycleInvoker.execute();
                     break;
                 case 0:
                     //execute cmdClose()

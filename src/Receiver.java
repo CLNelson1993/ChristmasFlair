@@ -8,7 +8,7 @@ public class Receiver {
     //Initialize LED strip
     LedDriverInterface ledDriver = new WS281x(18, 255, 100);
 
-    //Close method (Turn off strip when users choose to close program)
+   //Close method (Turn off strip when users choose to close program)
     public void cmdClose() {
         System.out.println("Turning off LED and closing program...");
         ledDriver.allOff();
@@ -67,6 +67,25 @@ public class Receiver {
         }
 
         ledDriver.render();
+    }
+
+    //RomSimpson's anims
+    public void cmdWipe() {
+        for (int i=0; i<ledDriver.getNumPixels(); i++) {
+            ledDriver.setPixelColourRGB(i, 0, 0, 255); //set as blue for now
+            ledDriver.render();
+            PixelAnimations.delay(50);
+        }
+    }
+
+    public void cmdRainbowCycle() {
+        for (int j=0; j<256*5; j++) { // 5 cycles of all colors on wheel
+            for (int i=0; i<ledDriver.getNumPixels(); i++) {
+                ledDriver.setPixelColour(i, PixelColour.wheel(((i * 256 / ledDriver.getNumPixels()) + j) & 255));
+            }
+            ledDriver.render();
+            PixelAnimations.delay(25);
+        }
     }
 
 }

@@ -10,6 +10,8 @@ import com.diozero.ws281xj.PixelColour;
 import com.diozero.ws281xj.rpiws281x.WS281x;
 import java.util.Scanner;
 
+import java.util.Scanner;
+
 public class Client {
     public static void main(String[] args) {
         //create receiver (you only need one of these for all commands)
@@ -30,8 +32,19 @@ public class Client {
         //create invoker to pass the command
         Invoker staticInvoker = new Invoker(cmdStatic);
 
+        //create new command
+        Command cmdWipe = new CMDWipe(receiver);
+        //create invoker to pass the command
+        Invoker wipeInvoker = new Invoker(cmdWipe);
 
-        // Scanner for testing purposes
+        //create new command
+        Command cmdRainbowCycle = new CMDRainbowCycle(receiver);
+        //create invoker to pass the command
+        Invoker rainbowCycleInvoker = new Invoker(cmdRainbowCycle);
+
+
+
+        // Scanner for testing purposes. This probably will be useless later. Too bad!
         // Create Scanner object for user input
         Scanner scanner = new Scanner(System.in);
 
@@ -40,6 +53,8 @@ public class Client {
             System.out.println("Enter a number to choose an animation.");
             System.out.println("1. Static (set color and brightness)");
             System.out.println("2. Rainbow");
+            System.out.println("3. Color Wipe");
+            System.out.println("4. Rainbow Cycle");
             System.out.println("0. Close program");
 
             //scan for choice (integer)
@@ -54,6 +69,12 @@ public class Client {
                 case 2:
                     //execute cmdRainbow()
                     rainbowInvoker.execute();
+                    break;
+                case 3:
+                    wipeInvoker.execute();
+                    break;
+                case 4:
+                    rainbowCycleInvoker.execute();
                     break;
                 case 0:
                     //execute cmdClose()
@@ -114,9 +135,9 @@ public class Receiver {
         System.out.println("Enter a value for Red (0-255).");
         rVal = staticScanner.nextInt();
         System.out.println("Enter a value for Green (0-255).");
-        gVal = staticScanner.nextInt();
-        System.out.println("Enter a value for Blue (0-255).");
         bVal = staticScanner.nextInt();
+        System.out.println("Enter a value for Blue (0-255).");
+        gVal = staticScanner.nextInt();
         System.out.println("Enter a value for Brightness (0-255).");
         brightVal = staticScanner.nextInt();
 
@@ -131,6 +152,25 @@ public class Receiver {
         }
 
         ledDriver.render();
+    }
+
+    //RomSimpson's anims
+    public void cmdWipe() {
+        for (int i=0; i<ledDriver.getNumPixels(); i++) {
+            ledDriver.setPixelColourRGB(i, 0, 0, 255); //set as blue for now
+            ledDriver.render();
+            PixelAnimations.delay(50);
+        }
+    }
+
+    public void cmdRainbowCycle() {
+        for (int j=0; j<256*5; j++) { // 5 cycles of all colors on wheel
+            for (int i=0; i<ledDriver.getNumPixels(); i++) {
+                ledDriver.setPixelColour(i, PixelColour.wheel(((i * 256 / ledDriver.getNumPixels()) + j) & 255));
+            }
+            ledDriver.render();
+            PixelAnimations.delay(25);
+        }
     }
 
 }
@@ -151,16 +191,16 @@ public interface Command {
     void execute();
 }
 
-public class CMDClose implements Command {
+public class CMDWipe implements Command {
     private Receiver receiver;
 
-    public CMDClose(Receiver receiver) {
+    public CMDWipe(Receiver receiver) {
         this.receiver = receiver;
     }
 
     @Override
     public void execute() {
-        receiver.cmdClose();
+        receiver.cmdWipe();
     }
 }
 
@@ -177,6 +217,19 @@ public class CMDStatic implements Command {
     }
 }
 
+public class CMDRainbowCycle implements Command {
+    private Receiver receiver;
+
+    public CMDRainbowCycle(Receiver receiver) {
+        this.receiver = receiver;
+    }
+
+    @Override
+    public void execute() {
+        receiver.cmdRainbowCycle();
+    }
+}
+
 public class CMDRainbow implements Command {
     private Receiver receiver;
 
@@ -187,5 +240,18 @@ public class CMDRainbow implements Command {
     @Override
     public void execute() {
         receiver.cmdRainbow();
+    }
+}
+
+public class CMDClose implements Command {
+    private Receiver receiver;
+
+    public CMDClose(Receiver receiver) {
+        this.receiver = receiver;
+    }
+
+    @Override
+    public void execute() {
+        receiver.cmdClose();
     }
 }
