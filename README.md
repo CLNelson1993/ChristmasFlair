@@ -5,7 +5,8 @@ For the first time, this repo has a functioning program! It's capable of running
 
 "The drawback with Command design pattern is that the code gets huge and confusing with high number of action methods and because of so many associations."
 Welp.
-![image](https://github.com/CLNelson1993/ChristmasFlair/assets/143137154/fda9e121-0a20-46b9-80c7-1806c80192ba)
+![image](https://github.com/CLNelson1993/ChristmasFlair/assets/143137154/06cab07b-3585-45a9-b1ad-8cff608fb474)
+
 
 
 # 10/26/2023 
