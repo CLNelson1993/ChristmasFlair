@@ -42,6 +42,11 @@ public class Client {
         //create invoker to pass the command
         Invoker rainbowCycleInvoker = new Invoker(cmdRainbowCycle);
 
+        //create new command
+        Command cmdStrobe = new CMDStrobe(receiver);
+        //create invoker to pass the command
+        Invoker strobeInvoker = new Invoker(cmdStrobe);
+
 
 
         // Scanner for testing purposes. This probably will be useless later. Too bad!
@@ -55,6 +60,7 @@ public class Client {
             System.out.println("2. Rainbow");
             System.out.println("3. Color Wipe");
             System.out.println("4. Rainbow Cycle");
+            System.out.println("5. Strobe");
             System.out.println("0. Close program");
 
             //scan for choice (integer)
@@ -76,6 +82,9 @@ public class Client {
                 case 4:
                     rainbowCycleInvoker.execute();
                     break;
+                case 5:
+                    strobeInvoker.execute();
+                    break;
                 case 0:
                     //execute cmdClose()
                     closeInvoker.execute();
@@ -88,6 +97,7 @@ public class Client {
         }
     }
 }
+
 
 public class Receiver {
     //Initialize LED strip
@@ -135,9 +145,9 @@ public class Receiver {
         System.out.println("Enter a value for Red (0-255).");
         rVal = staticScanner.nextInt();
         System.out.println("Enter a value for Green (0-255).");
-        bVal = staticScanner.nextInt();
-        System.out.println("Enter a value for Blue (0-255).");
         gVal = staticScanner.nextInt();
+        System.out.println("Enter a value for Blue (0-255).");
+        bVal = staticScanner.nextInt();
         System.out.println("Enter a value for Brightness (0-255).");
         brightVal = staticScanner.nextInt();
 
@@ -148,7 +158,7 @@ public class Receiver {
 
         //change all pixels to the assigned RGB values
         for (int i = 0; i < ledDriver.getNumPixels(); i++) {
-            ledDriver.setPixelColourRGB(i, rVal, gVal, bVal);
+            ledDriver.setPixelColourRGB(i, rVal, bVal, gVal);
         }
 
         ledDriver.render();
@@ -156,20 +166,45 @@ public class Receiver {
 
     //RomSimpson's anims
     public void cmdWipe() {
+        //set strip to default (in case brightness was changed using cmdStatic)
+        ledDriver = new WS281x(18, 255, 100);
+
         for (int i=0; i<ledDriver.getNumPixels(); i++) {
-            ledDriver.setPixelColourRGB(i, 0, 0, 255); //set as blue for now
+            ledDriver.setPixelColourRGB(i, 0, 255, 0); //set as blue for now
             ledDriver.render();
             PixelAnimations.delay(50);
         }
     }
 
     public void cmdRainbowCycle() {
+        //set strip to default (in case brightness was changed using cmdStatic)
+        ledDriver = new WS281x(18, 255, 100);
+
         for (int j=0; j<256*5; j++) { // 5 cycles of all colors on wheel
             for (int i=0; i<ledDriver.getNumPixels(); i++) {
                 ledDriver.setPixelColour(i, PixelColour.wheel(((i * 256 / ledDriver.getNumPixels()) + j) & 255));
             }
             ledDriver.render();
             PixelAnimations.delay(25);
+        }
+    }
+
+    public void cmdStrobe() {
+        //set strip to default (in case brightness was changed using cmdStatic)
+        ledDriver = new WS281x(18, 255, 100);
+
+        System.out.println("Executing cmdStrobe()");
+
+        while (true) {
+            for (int i = 0; i < ledDriver.getNumPixels(); i++) {
+                ledDriver.setPixelColourRGB(i, 0, 255, 0); //blue for now.
+            }
+            ledDriver.render();
+            PixelAnimations.delay(500);
+            for (int i = 0; i < ledDriver.getNumPixels(); i++) {
+                ledDriver.allOff();
+            }
+            PixelAnimations.delay(250);
         }
     }
 
@@ -253,5 +288,18 @@ public class CMDClose implements Command {
     @Override
     public void execute() {
         receiver.cmdClose();
+    }
+}
+
+public class CMDStrobe implements Command {
+    private Receiver receiver;
+
+    public CMDStrobe(Receiver receiver) {
+        this.receiver = receiver;
+    }
+
+    @Override
+    public void execute() {
+        receiver.cmdStrobe();
     }
 }

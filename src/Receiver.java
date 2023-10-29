@@ -8,7 +8,7 @@ public class Receiver {
     //Initialize LED strip
     LedDriverInterface ledDriver = new WS281x(18, 255, 100);
 
-   //Close method (Turn off strip when users choose to close program)
+    //Close method (Turn off strip when users choose to close program)
     public void cmdClose() {
         System.out.println("Turning off LED and closing program...");
         ledDriver.allOff();
@@ -63,7 +63,7 @@ public class Receiver {
 
         //change all pixels to the assigned RGB values
         for (int i = 0; i < ledDriver.getNumPixels(); i++) {
-            ledDriver.setPixelColourRGB(i, rVal, gVal, bVal);
+            ledDriver.setPixelColourRGB(i, rVal, bVal, gVal);
         }
 
         ledDriver.render();
@@ -71,20 +71,45 @@ public class Receiver {
 
     //RomSimpson's anims
     public void cmdWipe() {
+        //set strip to default (in case brightness was changed using cmdStatic)
+        ledDriver = new WS281x(18, 255, 100);
+
         for (int i=0; i<ledDriver.getNumPixels(); i++) {
-            ledDriver.setPixelColourRGB(i, 0, 0, 255); //set as blue for now
+            ledDriver.setPixelColourRGB(i, 0, 255, 0); //set as blue for now
             ledDriver.render();
             PixelAnimations.delay(50);
         }
     }
 
     public void cmdRainbowCycle() {
+        //set strip to default (in case brightness was changed using cmdStatic)
+        ledDriver = new WS281x(18, 255, 100);
+
         for (int j=0; j<256*5; j++) { // 5 cycles of all colors on wheel
             for (int i=0; i<ledDriver.getNumPixels(); i++) {
                 ledDriver.setPixelColour(i, PixelColour.wheel(((i * 256 / ledDriver.getNumPixels()) + j) & 255));
             }
             ledDriver.render();
             PixelAnimations.delay(25);
+        }
+    }
+
+    public void cmdStrobe() {
+        //set strip to default (in case brightness was changed using cmdStatic)
+        ledDriver = new WS281x(18, 255, 100);
+
+        System.out.println("Executing cmdStrobe()");
+
+        while (true) {
+            for (int i = 0; i < ledDriver.getNumPixels(); i++) {
+                ledDriver.setPixelColourRGB(i, 0, 255, 0); //blue for now.
+            }
+            ledDriver.render();
+            PixelAnimations.delay(500);
+            for (int i = 0; i < ledDriver.getNumPixels(); i++) {
+                ledDriver.allOff();
+            }
+            PixelAnimations.delay(250);
         }
     }
 

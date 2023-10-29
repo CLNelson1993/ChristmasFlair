@@ -30,6 +30,11 @@ public class Client {
         //create invoker to pass the command
         Invoker rainbowCycleInvoker = new Invoker(cmdRainbowCycle);
 
+        //create new command
+        Command cmdStrobe = new CMDStrobe(receiver);
+        //create invoker to pass the command
+        Invoker strobeInvoker = new Invoker(cmdStrobe);
+
 
 
         // Scanner for testing purposes. This probably will be useless later. Too bad!
@@ -43,6 +48,7 @@ public class Client {
             System.out.println("2. Rainbow");
             System.out.println("3. Color Wipe");
             System.out.println("4. Rainbow Cycle");
+            System.out.println("5. Strobe");
             System.out.println("0. Close program");
 
             //scan for choice (integer)
@@ -63,6 +69,9 @@ public class Client {
                     break;
                 case 4:
                     rainbowCycleInvoker.execute();
+                    break;
+                case 5:
+                    strobeInvoker.execute();
                     break;
                 case 0:
                     //execute cmdClose()
