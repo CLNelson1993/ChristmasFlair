@@ -41,8 +41,13 @@ public class Client {
         // Create Scanner object for user input
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("ChristmasFlair WS281x App");
+        System.out.println("RomSimpson and CLNelson1993");
+        System.out.println("");
+
         while (true) {
             //prompt
+            System.out.println("");
             System.out.println("Enter a number to choose an animation.");
             System.out.println("1. Static (set color and brightness)");
             System.out.println("2. Rainbow");
