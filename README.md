@@ -1,4 +1,9 @@
 # ChristmasFlair
+
+# 10/31/2023
+
+Quick demo (sorry for audio): https://youtu.be/qltSgunkI-c?si=-mrhQbPm-9-Cjl-p
+
 # 10/28/2023
 
 For the first time, this repo has a functioning program! It's capable of running 5 different methods that control the LED strip. 4 of them are animations, 1 of them is a "set color & brightness" method. 
