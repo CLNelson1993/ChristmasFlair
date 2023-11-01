@@ -8,6 +8,8 @@ class ChristmasFlairApplicationTests {
 
 	@Test
 	void contextLoads() {
+		//I just wanna see where the test begins running in the terminal.
+		System.out.println("Squidward's 2006 Honda Civic");
 	}
 
 }
