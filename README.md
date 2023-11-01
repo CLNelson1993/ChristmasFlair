@@ -5,6 +5,8 @@
 Now that everything is functioning, it's time to integrate Maven / Spring-boot / Tomcat. I already broke the repo once. Pushing the most up-to-date, working version right now in case it happens again.
 ![img.png](README_featureChris_log/img.png)
 
+diozero-distribution-1.3.5 does not appear to contain diozero.com.ws281xj.* - using 1.3.4 instead fixes all of my library issues instantly.
+
 # 10/31/2023
 
 Quick demo (sorry for audio): https://youtu.be/qltSgunkI-c?si=-mrhQbPm-9-Cjl-p
