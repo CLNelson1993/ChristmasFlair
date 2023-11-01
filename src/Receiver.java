@@ -2,6 +2,7 @@ import com.diozero.ws281xj.LedDriverInterface;
 import com.diozero.ws281xj.PixelAnimations;
 import com.diozero.ws281xj.PixelColour;
 import com.diozero.ws281xj.rpiws281x.WS281x;
+
 import java.util.Scanner;
 
 public class Receiver {
