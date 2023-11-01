@@ -1,5 +1,9 @@
 # ChristmasFlair
 
+# 11/1/2023 
+
+Now that everything is functioning, it's time to integrate Maven / Spring-boot / Tomcat. I already broke the repo once. Pushing the most up-to-date, working version right now in case it happens again.
+
 # 10/31/2023
 
 Quick demo (sorry for audio): https://youtu.be/qltSgunkI-c?si=-mrhQbPm-9-Cjl-p
