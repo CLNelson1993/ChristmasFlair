@@ -1,3 +1,5 @@
+package CommandDesignPattern;
+
 public class CMDClose implements Command {
     private Receiver receiver;
 

@@ -1,3 +1,5 @@
+package CommandDesignPattern;
+
 import com.diozero.ws281xj.LedDriverInterface;
 import com.diozero.ws281xj.PixelAnimations;
 import com.diozero.ws281xj.PixelColour;

@@ -1,3 +1,5 @@
+package CommandDesignPattern;
+
 public class CMDWipe implements Command {
     private Receiver receiver;
 

@@ -1,3 +1,5 @@
+package CommandDesignPattern;
+
 public class CMDRainbow implements Command {
     private Receiver receiver;
 
