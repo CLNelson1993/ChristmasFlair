@@ -13,7 +13,7 @@ Accessing server on PC via 192.168.x.x:8080
 
 NEW ISSUE: I don't know how to put my application on to the Pi. I can compile it easily in Maven on Windows but the WAR file doesn't seem to work when I transfer it to the Pi. 
 
-# 11/1/2023 
+# 11/1/2023
 
 Now that everything is functioning, it's time to integrate Maven / Spring-boot / Tomcat. I already broke the repo once. Pushing the most up-to-date, working version right now in case it happens again.
 ![img.png](README_featureChris_log/img.png)
